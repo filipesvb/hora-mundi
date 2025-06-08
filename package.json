@@ -1,17 +1,31 @@
 {
-  "name": "tests",
+  "name": "hora-mundi",
   "version": "1.0.0",
+  "description": "Relógio com múltiplos fusos horários.",
   "main": "main.js",
+  "homepage": "https://filipesvb.github.io/hora-mundi",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx webpack --config webpack.config.js -w --mode=development",
-    "build": "npx webpack --config webpack.config.js --mode=production"
+    "start": "webpack --config webpack.config.js -w --mode=development",
+    "build": "webpack --config webpack.config.js --mode=production",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d index.html"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "relogio",
+    "fuso-horario",
+    "dayjs",
+    "webpack",
+    "micromodal"
+  ],
+  "author": "Filipe Silva",
   "license": "ISC",
-  "description": "",
   "devDependencies": {
+    "copy-webpack-plugin": "^13.0.0",
+    "css-loader": "^7.1.2",
+    "gh-pages": "^6.3.0",
+    "html-webpack-plugin": "^5.6.3",
+    "style-loader": "^4.0.0",
     "webpack": "^5.99.9",
     "webpack-cli": "^6.0.1"
   },

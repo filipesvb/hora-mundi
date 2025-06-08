@@ -1,5 +1,7 @@
 import MicroModal from "micromodal";
 import dayjs from "dayjs";
+import "./styles/main.css"; // caminho do seu CSS
+
 const date = new Date();
 
 const timeElement = document.querySelector(".time-container");
