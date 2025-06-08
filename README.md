@@ -17,7 +17,7 @@ Relógio digital com suporte a múltiplos fusos horários internacionais. Feito 
 
 <!-- Substitua pelo seu link ou gif -->
 
-![Demonstração do projeto](./assets/demonstracao.mp4)
+![Demonstração do projeto](./assets/demonstracao.gif)
 
 Você pode testar a versão online aqui:  
 🔗 [Hora Mundi no GitHub Pages](https://filipesvb.github.io/hora-mundi)
