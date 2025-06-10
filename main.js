@@ -8,37 +8,39 @@ const timeElement = document.querySelector(".time-container");
 const timezoneElement = document.querySelector(".timezone-container");
 const dateElement = document.querySelector(".date-container");
 const myForm = document.querySelector("#form");
+const timezoneSelect = document.getElementById("timezone");
 
 let offset = JSON.parse(localStorage.getItem("offset")) || 0;
 let timezone = JSON.parse(localStorage.getItem("timezone")) || "";
 
-function getHora() {
+function getUtcTime() {
   const offsetMilli = offset * 60 * 60 * 1000;
   const deslocamento = date.getTimezoneOffset() * 60 * 1000;
   const dataUTC = dayjs().add(deslocamento);
-
   const dataAtualizada = dataUTC.add(offsetMilli, "milliseconds");
+
+  return dataAtualizada;
+}
+
+function getHora() {
+  const dataAtualizada = getUtcTime();
   return dataAtualizada.format("HH:mm:ss");
 }
 
 function getData() {
-  const dataLocal = dayjs().format("dddd, DD MMMM, YYYY");
-  return dataLocal;
+  const dataAtualizada = getUtcTime();
+  return dataAtualizada.format("dddd, DD MMMM, YYYY");
 }
 
 function getTimezone() {
   const [tz] = timeZones
     .map((cat) => {
-      console.log(cat);
-      console.log(myForm.elements[0].value);
       const [encontrado] = cat.filter(
         (t) => t["name"] == myForm.elements[0].value
       );
-      console.log(encontrado);
       return encontrado;
     })
     .filter((e) => e !== undefined);
-  console.log(tz);
   offset = tz["offset"];
   timezone = `${tz["displayName"]} (UTC${
     tz["offset"] > 0 ? `+${tz["offset"]}` : tz["offset"]
@@ -54,8 +56,6 @@ function getLocaleTimezone() {
   timezone = "(UTC)";
   return timezone;
 }
-
-const timezoneSelect = document.getElementById("timezone");
 
 document.addEventListener("DOMContentLoaded", () => {
   MicroModal.init();
@@ -93,11 +93,15 @@ const timeZones = [
 function fillTimezoneSelect() {
   const timeZonesHtml = timeZones
     .map((cat) => {
-      let result = `<option value="${cat[0]["name"]}" disabled >${cat[0]["displayName"]}</option>`;
-      cat.shift();
-      result += cat
-        .map((tz) => `<option value="${tz.name}">${tz.displayName}</option>`)
-        .join("");
+      let result = `
+        <optgroup label="${cat[0]["displayName"]}">
+          ${cat.shift()}
+          ${cat
+            .map(
+              (tz) => `<option value="${tz.name}">${tz.displayName}</option>`
+            )
+            .join("")}
+        </optgroup>`;
 
       return result;
     })

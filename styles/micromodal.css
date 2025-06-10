@@ -64,12 +64,14 @@
 
 .modal__content select {
   width: 400px;
+  font-size: 1.5rem;
   border: black 4px solid;
   border-radius: 8px;
-  font-size: 1.2rem;
   padding: 0.4rem;
   font-family: DynaPuff;
   margin-right: 1rem;
+  max-height: 400px;
+  overflow-y: auto;
 }
 .modal__content select option[disabled] {
   background-color: rgb(95, 95, 95);
@@ -191,4 +193,39 @@
 .micromodal-slide .modal__container,
 .micromodal-slide .modal__overlay {
   will-change: transform;
+}
+
+@media (max-width: 480px) {
+  .modal__content {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+    color: rgba(0, 0, 0, 0.8);
+    font-family: DynaPuff;
+  }
+
+  .modal__content form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .modal__content select {
+    width: 100%;
+    border: black 4px solid;
+    border-radius: 8px;
+    font-family: DynaPuff;
+    background-color: transparent;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 720px) {
+  .modal__container {
+    margin: 0 2%;
+  }
+  .modal__content form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
 }

@@ -9,7 +9,7 @@
     "start": "webpack --config webpack.config.js -w --mode=development",
     "build": "webpack --config webpack.config.js --mode=production",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d index.html"
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [
     "relogio",
@@ -30,6 +30,7 @@
     "webpack-cli": "^6.0.1"
   },
   "dependencies": {
+    "choices.js": "^11.1.0",
     "dayjs": "^1.11.13",
     "micromodal": "^0.6.1"
   }
